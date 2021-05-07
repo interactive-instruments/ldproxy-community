@@ -1,0 +1,9 @@
+
+dependencies {
+    embedded (group: 'org.locationtech.jts', name: 'jts-core', version: '1.16.1')
+
+    testImplementation group: 'de.interactive_instruments', name: 'xtraplatform-store'
+    testImplementation group: 'de.interactive_instruments', name: 'xtraplatform-feature-provider-wfs'
+}
+
+

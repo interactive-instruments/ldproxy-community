@@ -1,7 +1,10 @@
 pluginManagement {
     repositories {
         maven {
-            url 'https://dl.bintray.com/iide/maven'
+            url "https://dl.interactive-instruments.de/repository/maven-releases/"
+        }
+        maven {
+            url "https://dl.interactive-instruments.de/repository/maven-snapshots/"
         }
         gradlePluginPortal()
     }
@@ -9,9 +12,13 @@ pluginManagement {
 
 rootProject.name = 'ldproxy-community'
 
-rootDir.listFiles().each { file ->
-    if (file.isDirectory() && file.name.startsWith('ogcapi-')) {
+new File(rootDir, 'current').listFiles().each { file ->
+    if (file.isDirectory()) {
         include file.name
     }  
 }
 
+rootProject.children.each {project ->
+    String projectDirName = "current/$project.name"
+    project.projectDir = new File(rootDir, projectDirName)
+}

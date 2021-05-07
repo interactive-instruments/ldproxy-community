@@ -1,0 +1,6 @@
+
+dependencies {
+    embedded (group: 'org.locationtech.jts', name: 'jts-core', version: '1.16.1')
+    embedded (group: 'org.locationtech.jts.io', name: 'jts-io-common', version: '1.16.1')
+}
+
