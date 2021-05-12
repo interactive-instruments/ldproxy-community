@@ -28,7 +28,7 @@ pipeline:
       branch: master
 
   trigger-ldproxy:
-    image: plugins/downstream:1.1.0
+    image: docker.ci.interactive-instruments.de/cicd/drone-downstream #plugins/downstream:1.1.0
     server: https://ci.ldproxy.net
     token: $${WP_TOKEN}
     repositories: 
