@@ -32,7 +32,7 @@ pipeline:
     server: https://ci.ldproxy.net
     token: $${WP_TOKEN}
     repositories: 
-      - interactive-instruments.de/ldproxy@master
+      - interactive-instruments/ldproxy@master
     fork: true
     secrets: [ wp_token]
     when:
