@@ -29,7 +29,6 @@ pipeline:
 
   trigger-ldproxy:
     image: plugins/downstream:1.2.0
-    pull: true
     server: https://ci.ldproxy.net
     repositories: 
       - interactive-instruments/ldproxy@master
