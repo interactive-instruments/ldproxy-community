@@ -30,7 +30,7 @@ pipeline:
   trigger-ldproxy:
     image: plugins/downstream
     server: https://ci.ldproxy.net
-    token: $${WP_TOKEN}
+    token: ${WP_TOKEN}
     repositories: 
       - interactive-instruments.de/ldproxy@master
     fork: true
