@@ -29,6 +29,7 @@ pipeline:
 
   trigger-ldproxy:
     image: docker.ci.interactive-instruments.de/cicd/drone-downstream #plugins/downstream:1.1.0
+    pull: true
     server: https://ci.ldproxy.net
     token: $${WP_TOKEN}
     repositories: 
