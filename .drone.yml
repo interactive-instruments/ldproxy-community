@@ -1,0 +1,47 @@
+pipeline:
+
+  load-cache:
+    image: drillster/drone-volume-cache
+    volumes: [/var/lib/docker/tmp:/cache]
+    restore: true
+    mount:
+      - .gradle/caches
+      - .gradle/wrapper
+
+  build-snapshot:
+    image: openjdk:11-slim
+    commands:
+      - export GRADLE_USER_HOME=$${DRONE_WORKSPACE}/.gradle
+      - ./gradlew build -Psnapshot=true
+    when:
+      event: [push]
+
+  libs-snapshot:
+    image: openjdk:11-slim
+    commands:
+      - export GRADLE_USER_HOME=$${DRONE_WORKSPACE}/.gradle
+      - ./gradlew publish -Psnapshot=true -PdeployUser=$SNAPSHOT_USER -PdeployPassword=$SNAPSHOT_PASS
+    secrets: [ snapshot_user, snapshot_pass]
+    when:
+      event: push
+      branch: master
+
+  trigger-ldproxy:
+    image: plugins/downstream
+    server: https://ci.ldproxy.net
+    token: $${WP_TOKEN}
+    repositories: 
+      - interactive-instruments.de/ldproxy@master
+    fork: true
+    secrets: [ wp_token]
+    when:
+      event: push
+      branch: master
+
+   save-cache:
+    image: drillster/drone-volume-cache
+    volumes: [/var/lib/docker/tmp:/cache]
+    rebuild: true
+    mount:
+      - .gradle/caches
+      - .gradle/wrapper
