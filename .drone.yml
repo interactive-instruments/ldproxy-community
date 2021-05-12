@@ -39,7 +39,7 @@ pipeline:
       event: push
       branch: master
 
-   save-cache:
+  save-cache:
     image: drillster/drone-volume-cache
     volumes: [/var/lib/docker/tmp:/cache]
     rebuild: true
