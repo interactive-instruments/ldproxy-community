@@ -28,7 +28,7 @@ pipeline:
       branch: master
 
   trigger-ldproxy:
-    image: plugins/downstream
+    image: plugins/downstream:v1.1.0
     server: https://ci.ldproxy.net
     token: $${WP_TOKEN}
     repositories: 
