@@ -10,3 +10,7 @@ node_modules/
 xtraplatform-manager-wfs-proxy/src/main/resources/manager/
 **/out/
 .DS_Store
+.classpath
+.project
+.settings
+bin/
